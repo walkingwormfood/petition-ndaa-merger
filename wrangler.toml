@@ -3,9 +3,9 @@ compatibility_date = "2026-07-01"
 pages_build_output_dir = "."
 
 [vars]
-SITE_URL = "https://petition-ndaa-merger.pages.dev"
-MAIL_FROM = "petition@example.invalid"   # set to a real verified sender before production
-TEST_MODE = "1"                          # remove (or set "0") for production — test mode returns the confirm link directly
+SITE_URL = "https://nomergerwithoutdebate.org"
+MAIL_FROM = "petition@nomergerwithoutdebate.org"
+TEST_MODE = "0"
 
 [[d1_databases]]
 binding = "DB"
