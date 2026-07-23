@@ -1,0 +1,23 @@
+name: Deploy to Cloudflare Pages
+
+# Same pattern as the FAFO sites: direct-upload Pages project, push = deployed.
+# Requires one repo secret: CLOUDFLARE_API_TOKEN (Pages:Edit + D1:Edit).
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Stage tracked files only
+        run: mkdir -p /tmp/site && git archive HEAD | tar -x -C /tmp/site
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: 4ff969ce831c43ea0c37553883217353
+          command: pages deploy /tmp/site --project-name=petition-ndaa-merger --branch=main --commit-dirty=true
