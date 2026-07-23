@@ -98,7 +98,7 @@ document.getElementById('petition').addEventListener('submit', async (e) => {
         updates: document.getElementById('updates').checked
       })});
     const j = await res.json();
-    if (res.ok) { msg.textContent = 'Almost done — check your email and click the confirmation link to make your signature count.'; msg.className = 'ok'; e.target.reset(); }
+    if (res.ok) { msg.textContent = j.message || 'Almost done — check your email and click the confirmation link to make your signature count.'; msg.className = 'ok'; e.target.reset(); }
     else { msg.textContent = j.error || 'Something went wrong — try again.'; msg.className = 'err'; btn.disabled = false; }
   } catch (err) { msg.textContent = 'Network error — try again.'; msg.className = 'err'; btn.disabled = false; }
 });
